@@ -17,13 +17,11 @@ function JobInformation() {
     requirements,
     role,
   } = currentJob;
+  // console.log(currentJob);
 
-  useEffect(
-    function () {
-      getJob(id);
-    },
-    [id]
-  );
+  useEffect(() => {
+    getJob(id);
+  }, [id]);
 
   // console.log(currentJob);
   if (isLoading) return <Spinner />;

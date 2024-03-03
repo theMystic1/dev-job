@@ -81,7 +81,7 @@ function reducer(state, action) {
   }
 }
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "../data/jobs.json";
 
 const JobsContext = createContext();
 
@@ -107,13 +107,14 @@ function JobsProvider({ children }) {
     dispatch({ type: "isLoading", payload: true });
     async function loadJobs() {
       try {
-        const res = await fetch(`${BASE_URL}/jobs`);
+        const res = await fetch(`${BASE_URL}`);
         const data = await res.json();
 
+        // console.log(data.jobs);
         setTimeout(() => {
           dispatch({
             type: "jobs/loaded",
-            payload: data,
+            payload: data.jobs,
           });
         }, 1000);
 
@@ -131,19 +132,17 @@ function JobsProvider({ children }) {
   }, []);
 
   async function getJob(id) {
-    // console.log(id, currentJob.id);
-    if (id === currentJob.id) return;
     dispatch({ type: "isLoading", payload: true });
-    try {
-      const res = await fetch(`${BASE_URL}/jobs/${id}`);
-      const data = await res.json();
 
-      // currentJob = {};
+    try {
+      // Find the job with the specified id
+      const foundJob = jobs.find((job) => job.id === +id);
+
       setTimeout(() => {
-        dispatch({ type: "job/loaded", payload: data });
-      }, 1200);
+        dispatch({ type: "job/loaded", payload: foundJob });
+      }, 1000);
     } catch (error) {
-      dispatch({ type: "error", payload: "Error fetching job" });
+      dispatch({ type: "error", payload: error.message });
     }
   }
 

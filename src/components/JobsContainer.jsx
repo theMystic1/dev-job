@@ -34,7 +34,7 @@ function JobsContainer() {
       <Filter />
       <PhoneFilter />
       {isModalOpen && <ModalFilter />}
-      <ul className="jobs">
+      <section className="jobs">
         {isSearchedData
           ? originalJobs.map((job) => <JobsList job={job} key={job.id} />)
           : fullList
@@ -42,7 +42,7 @@ function JobsContainer() {
           : jobs
               ?.slice(0, 12)
               .map((job) => <JobsList job={job} key={job.id} />)}
-      </ul>
+      </section>
       <span className="more-btn">
         {jobs.length > 0 && !isSearchedData && (
           <Button

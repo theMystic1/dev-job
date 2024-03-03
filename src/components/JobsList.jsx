@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useJobs } from "../contexts/JobsContext";
 
 function JobsList({ job }) {
+  const { getJob } = useJobs();
   const {
     position,
     logoBackground,
@@ -11,11 +13,13 @@ function JobsList({ job }) {
     location,
     logo,
   } = job;
+  // console.log(id);
   return (
-    <li>
+    <div>
       <Link
         className="job link"
         to={`${id}?title=${position.replace(/\s/g, "_")}`}
+        // onClick={getJob}
       >
         <div
           className="logo-bg"
@@ -36,7 +40,7 @@ function JobsList({ job }) {
 
         <h3 className="country">{location}</h3>
       </Link>
-    </li>
+    </div>
   );
 }
 
