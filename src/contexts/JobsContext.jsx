@@ -81,7 +81,7 @@ function reducer(state, action) {
   }
 }
 
-const BASE_URL = "../data/jobs.json";
+// const BASE_URL = "../data/jobs.json";
 
 const JobsContext = createContext();
 
@@ -107,7 +107,7 @@ function JobsProvider({ children }) {
     dispatch({ type: "isLoading", payload: true });
     async function loadJobs() {
       try {
-        const res = await fetch(`${BASE_URL}`);
+        const res = await fetch("../data/jobs.json");
         const data = await res.json();
 
         // console.log(data.jobs);
