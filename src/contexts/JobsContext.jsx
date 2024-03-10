@@ -110,7 +110,7 @@ function JobsProvider({ children }) {
   ] = useReducer(reducer, initialState);
 
   useEffect(function () {
-    dispatch({ type: "isLoading", payload: true });
+    // dispatch({ type: "isLoading", payload: true });
     async function loadJobs() {
       try {
         const res = await fetch("data/jobs.json");
