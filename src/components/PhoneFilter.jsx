@@ -45,11 +45,11 @@ function PhoneFilter() {
         onChange={handeleDeatils}
       />
       <span className="filter--btn" onClick={handleModalWindow}>
-        <img src="./assets/mobile/icon-filter.svg" alt="" />
+        <img src=".mobile/icon-filter.svg" alt="" />
       </span>
 
       <Button className="btn--phn">
-        <img src="/assets/mobile/003-search.png" alt="" />
+        <img src="mobile/003-search.png" alt="" />
       </Button>
     </form>
   );
