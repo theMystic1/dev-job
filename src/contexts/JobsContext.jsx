@@ -123,12 +123,6 @@ function JobsProvider({ children }) {
             payload: data.jobs,
           });
         }, 1000);
-
-        // dispatch({
-        //   type: "alljobs/loaded",
-        //   payload: data,
-        // });
-        // payload: data,
       } catch (error) {
         dispatch({ type: "error", payload: error.message });
       }
