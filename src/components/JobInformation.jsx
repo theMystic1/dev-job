@@ -23,6 +23,7 @@ function JobInformation() {
   useEffect(() => {
     getJob(id);
   }, [id, getJob]);
+  console.log(id);
 
   if (isLoading) return <Spinner />;
   // if (!currentJob) return <PageNotFound />;
