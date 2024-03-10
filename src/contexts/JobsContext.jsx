@@ -132,7 +132,7 @@ function JobsProvider({ children }) {
   }, []);
 
   const getJob = useCallback(
-    async function getJob(id) {
+    function getJob(id) {
       if (id === currentJob.id) return;
       dispatch({ type: "isLoading", payload: true });
 
@@ -151,7 +151,7 @@ function JobsProvider({ children }) {
         dispatch({ type: "error", payload: error.message });
       }
     },
-    [jobs]
+    [jobs, currentJob.id]
   );
 
   function handleClick(e) {
