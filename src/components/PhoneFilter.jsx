@@ -45,7 +45,7 @@ function PhoneFilter() {
         onChange={handeleDeatils}
       />
       <span className="filter--btn" onClick={handleModalWindow}>
-        <img src=".mobile/icon-filter.svg" alt="" />
+        <img src="mobile/icon-filter.svg" alt="" />
       </span>
 
       <Button className="btn--phn">
