@@ -1,4 +1,10 @@
-import { createContext, useReducer, useEffect, useContext } from "react";
+import {
+  createContext,
+  useReducer,
+  useEffect,
+  useContext,
+  useCallback,
+} from "react";
 
 const initialState = {
   jobs: [],
@@ -131,20 +137,27 @@ function JobsProvider({ children }) {
     loadJobs();
   }, []);
 
-  async function getJob(id) {
-    dispatch({ type: "isLoading", payload: true });
+  const getJob = useCallback(
+    async function getJob(id) {
+      dispatch({ type: "isLoading", payload: true });
 
-    try {
-      // Find the job with the specified id
-      const foundJob = jobs.find((job) => job.id === +id);
+      try {
+        // Find the job with the specified id
+        const foundJob = jobs.find((job) => job.id === +id);
 
-      setTimeout(() => {
-        dispatch({ type: "job/loaded", payload: foundJob });
-      }, 1000);
-    } catch (error) {
-      dispatch({ type: "error", payload: error.message });
-    }
-  }
+        if (foundJob) {
+          setTimeout(() => {
+            dispatch({ type: "job/loaded", payload: foundJob });
+          }, 1000);
+        } else {
+          throw new Error("Job not found");
+        }
+      } catch (error) {
+        dispatch({ type: "error", payload: error.message });
+      }
+    },
+    [jobs]
+  );
 
   function handleClick(e) {
     e.preventDefault();

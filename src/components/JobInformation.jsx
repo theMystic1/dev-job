@@ -1,13 +1,15 @@
+// JobInformation.js
+
 import { useParams } from "react-router-dom";
-import Button from "./Button";
 import { useEffect } from "react";
 import { useJobs } from "../contexts/JobsContext";
 import Spinner from "./Spinner.";
-import PageNotFound from "../pages/PageNotFound";
+// import PageNotFound from "../pages/PageNotFound";
 
 function JobInformation() {
   const { id } = useParams();
   const { getJob, currentJob, isLoading } = useJobs();
+  // Destructure the necessary fields from currentJob
   const {
     contract,
     description,
@@ -17,13 +19,11 @@ function JobInformation() {
     requirements,
     role,
   } = currentJob;
-  // console.log(currentJob);
 
   useEffect(() => {
     getJob(id);
-  }, [id]);
+  }, [id, getJob]);
 
-  // console.log(currentJob);
   if (isLoading) return <Spinner />;
   // if (!currentJob) return <PageNotFound />;
   return (
@@ -37,12 +37,8 @@ function JobInformation() {
             </ul>
           </span>
           <h1 className="title">{position}</h1>
-
           <h3 className="country">{location}</h3>
         </div>
-        <span>
-          <Button className="btn_apply">Apply Now</Button>
-        </span>
       </header>
 
       <p className="desc">{description}</p>
