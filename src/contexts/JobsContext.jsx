@@ -133,6 +133,7 @@ function JobsProvider({ children }) {
 
   const getJob = useCallback(
     async function getJob(id) {
+      if (id === currentJob.id) return;
       dispatch({ type: "isLoading", payload: true });
 
       try {
