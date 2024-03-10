@@ -113,7 +113,7 @@ function JobsProvider({ children }) {
     dispatch({ type: "isLoading", payload: true });
     async function loadJobs() {
       try {
-        const res = await fetch("../data/jobs.json");
+        const res = await fetch("data/jobs.json");
         const data = await res.json();
 
         // console.log(data.jobs);
